@@ -30,7 +30,7 @@ if __name__ == '__main__':
     t = time.time()
 
     # Load PyTorch model
-    model = attempt_load(opt.weights, map_location=torch.device('cuda:0'))  # load FP32 model
+    model = attempt_load(opt.weights, map_location=torch.device('cpu'))  # load FP32 model
     labels = model.names
 
     # Checks
@@ -38,7 +38,7 @@ if __name__ == '__main__':
     opt.img_size = [check_img_size(x, gs) for x in opt.img_size]  # verify img_size are gs-multiples
 
     # Input
-    img = torch.zeros(opt.batch_size, 3, *opt.img_size).to('cuda:0')  # image size(1,3,320,192) iDetection
+    img = torch.zeros(opt.batch_size, 3, *opt.img_size).to('cpu')  # image size(1,3,320,192) iDetection
 
     # Update model
     for k, m in model.named_modules():
