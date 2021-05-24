@@ -17,9 +17,9 @@ RUN python3 -c "import cv2"
 RUN pip install -r /home/model-server/ressources/yolov5/requirements.txt
 EXPOSE 8080 8081
 ENV PYTHONPATH "${PYTHONPATH}:/home/model-server/ressources/yolov5/"
-RUN python /home/model-server/ressources/yolov5/models/export.py --weights /home/model-server/ressources/weights.pt --img 416 --batch 1
+RUN python /home/model-server/ressources/yolov5/models/export.py --weights /home/model-server/ressources/YOLOv5s-food15.pt --img 416 --batch 1
 RUN torch-model-archiver --model-name my_model_name \
---version 0.1 --serialized-file /home/model-server/ressources/weights.torchscript.pt \
+--version 0.1 --serialized-file /home/model-server/ressources/YOLOv5s-food15.torchscript.pt \
 --handler /home/model-server/ressources/torchserve_handler.py \
 --extra-files /home/model-server/ressources/index_to_name.json,/home/model-server/ressources/torchserve_handler.py
 RUN mv my_model_name.mar model-store/my_model_name.mar
