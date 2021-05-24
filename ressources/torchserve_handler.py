@@ -16,7 +16,7 @@ class ModelHandler(BaseHandler):
         self._context = None
         self.initialized = False
         self.batch_size = 1
-        self.img_size = 640
+        self.img_size = 416
 
     def preprocess(self, data):
         """
